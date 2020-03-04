@@ -1,38 +1,44 @@
 package main
 
-import "math"
+import (
+	"fmt"
+)
 
 func letterCombinations(digits string) []string {
-	result := make([]string, math.Pow(4, float64(len(digits))))
+	var result []string
 	if digits == "" {
 		return result
 	}
-	var table []string = []string {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}
+	table := [][]string{{},{},{"a","b","c"}, {"d","e","f"},
+		{"g","h","i"}, {"j","k","l"},
+		{"m","n","o"}, {"p","q","r","s"},
+		{"t","u","v"}, {"w","x","y","z"}}
 
 	//len := len(digits)
 	i := 0
 	temp := ""
-	backTrack(&result,table,i,digits,temp )
+	backTrack2(&result,table,i,digits,temp )
 	return result
 }
 
-func backTrack(result *[]string, table []string, i int, digits string, temp string) {
+func backTrack2(result *[]string, table [][]string, i int, digits string, temp string) {
 	if len(temp) == len(digits) {
-		result[]
+		*result=append(*result,temp)
 		temp = ""
+		return
 	}
 
-	nums := digits[i]
+	nums := int([]byte(digits)[i]-48)
 	key := table[nums]
 
 	for j := 0 ; j < len(key) ; j++ {
-		append(temp,key[j])
-
+		temp += key[j]
+		backTrack2(result,table,i+1,digits,temp)
+		temp = temp[:len(temp)-1]
 	}
-
-
 }
 
 func main() {
-	
+	pho := "233"
+	fmt.Print(letterCombinations(pho))
 }
