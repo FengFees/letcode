@@ -2,19 +2,19 @@ package main
 
 import "fmt"
 
-func backTrack(result *[][]int ,nums []int , temp []int , visited []bool) {
+func backTrack(result *[][]int, nums []int, temp []int, visited []bool) {
 	if len(temp) == len(nums) {
-		*result = append(*result,append([]int{},temp...))
+		*result = append(*result, append([]int{}, temp...))
 		return
 	}
 
-	for i:= 0 ; i<len(nums) ; i++ {
+	for i := 0; i < len(nums); i++ {
 		if visited[i] == true {
 			continue
 		}
 		visited[i] = true
-		temp = append(temp,nums[i])
-		backTrack(result,nums,temp,visited)
+		temp = append(temp, nums[i])
+		backTrack(result, nums, temp, visited)
 		visited[i] = false
 		temp = temp[:len(temp)-1]
 	}
@@ -22,19 +22,19 @@ func backTrack(result *[][]int ,nums []int , temp []int , visited []bool) {
 }
 
 func permute(nums []int) [][]int {
-	len:= len(nums)
-	if len==0 {
+	l := len(nums)
+	if l == 0 {
 		return nil
 	}
-	visited := make([]bool, len)
-	result := make([][]int , 0)
-	backTrack(&result,nums,make([]int,0,len),visited)
+	visited := make([]bool, l)
+	result := make([][]int, 0)
+	backTrack(&result, nums, make([]int, 0, l), visited)
 	return result
 }
 
 func main() {
-	nums := make([]int,0)
-	nums = append(nums,1,2,3)
+	nums := make([]int, 0)
+	nums = append(nums, 1, 2, 3)
 	fmt.Print(nums)
 	result := permute(nums)
 	fmt.Print(result)
