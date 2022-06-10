@@ -1,0 +1,69 @@
+// 该函数使用二分查找的方法，会从[0, n)中取出一个值index，index为[0, n)中最小的使函数f(index)为True的值，并且f(index+1)也为True。
+
+// 如果无法找到该index值，则该方法为返回n。
+
+data := []int{1, 3, 5, 8, 8, 8, 9, 10, 11}
+
+
+
+// 查找整数 x 在切片 data 中的插入位置，没找到则返回数组长度
+
+insertIdx1 := sort.SearchInts(data, 7)
+
+// 如果小于数组长度，表示找到插入位置；并且插入位置的值与目标值相同，则表示找到该目标值
+
+isFind7 := insertIdx1 < len(data) && data[insertIdx1] == 7
+
+fmt.Println("find 7: index =",insertIdx1,", value =",data[insertIdx1], " isFind:",isFind7)
+
+
+
+insertIdx2 := sort.SearchInts(data, 8)
+
+isFind8 := insertIdx2 < len(data) && data[insertIdx2] == 8
+
+fmt.Println("find 8: index =",insertIdx2,", value =",data[insertIdx2], " isFind:",isFind8)
+
+
+
+// 返回数组中第一个大于或等于目标值的索引
+
+iter1 := sort.Search(len(data), func(i int) bool {
+
+   return data[i] >= 8
+
+})
+
+fmt.Println("lower_bound 8: index =", iter1, ", value =", data[iter1])
+
+
+
+// 返回数组中第一个大于目标值的索引
+
+iter2 := sort.Search(len(data), func(i int) bool {
+
+   return data[i] > 8
+
+})
+
+fmt.Println("upper_bound 8: index =",iter2, ", value =", data[iter2])
+
+输出结果：
+
+find 7: index = 3 , value = 8  isFind: false
+
+find 8: index = 3 , value = 8  isFind: true
+
+lower_bound 8: index = 3 , value = 8
+
+upper_bound 8: index = 6 , value = 9
+
+
+
+语义说明：
+
+Ÿ   Search：
+
+a）  使用“二分查找”算法来搜索某指定切片[0:n]，并返回能够使f(i)=true的最小的i（0<=i<n）值，并且会假定，如果f(i)=true，则f(i+1)=true，即对于切片[0:n]，i之前的切片元素会使f()函数返回false，i及i之后的元素会使f()函数返回true。当无法找到时f(i)=true的i时，返回n（而不是返回-1）。
+
+b）  可以通过编写不同的f(i)函数来获得lower_bound、upper_bound，见上述代码片段。
