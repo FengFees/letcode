@@ -34,7 +34,7 @@ type MinStack struct {
 }
 
 /** initialize your data structure here. */
-func Constructor() MinStack {
+func Constructor2() MinStack {
 	return MinStack{
 		stack: []int{},
 		min:   math.MaxInt32,
