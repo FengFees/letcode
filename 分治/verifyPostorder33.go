@@ -1,4 +1,4 @@
-package 分治
+package main
 
 /*
 剑指 Offer 33. 二叉搜索树的后序遍历序列

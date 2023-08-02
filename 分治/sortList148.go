@@ -1,4 +1,4 @@
-package 分治
+package main
 
 /*
 148. 排序链表
