@@ -1,4 +1,4 @@
-package 双指针
+package 分治
 
 /*
 148. 排序链表
