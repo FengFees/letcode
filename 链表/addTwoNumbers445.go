@@ -85,7 +85,7 @@ func addTwoNumbers2(l1 *ListNode, l2 *ListNode, d1 int, d2 int) (res *ListNode, 
 	return
 }
 
-// 栈
+// 堆栈
 func addTwoNumbers3(l1 *ListNode, l2 *ListNode) *ListNode {
 	s1, s2, carry := pushList(l1), pushList(l2), 0
 	var newHead *ListNode

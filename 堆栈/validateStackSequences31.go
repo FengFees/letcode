@@ -1,4 +1,4 @@
-package 栈
+package 堆栈
 
 /*
 剑指 Offer 31. 栈的压入、弹出序列
